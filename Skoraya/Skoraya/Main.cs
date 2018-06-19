@@ -188,6 +188,7 @@ namespace Skoraya
             h_dgv_calls.Visible = true;
             h_tb_search.Visible = true;
 
+            pictureBox1.Visible = false;
             n_btn_adm_register.Visible = false;
             n_btn_logout.Visible = false;
             n_btn_save.Visible = false;
@@ -202,6 +203,7 @@ namespace Skoraya
             h_dgv_calls.Visible = false;
             h_tb_search.Visible = false;
 
+            pictureBox1.Visible = true;
             n_btn_adm_register.Visible = true;
             n_btn_logout.Visible = true;
             n_btn_save.Visible = true;
