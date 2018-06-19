@@ -322,8 +322,7 @@ namespace Skoraya
 
         private void h_btn_printBlank_Click(object sender, EventArgs e)
         {
-            PrintDialog p = new PrintDialog();
-            p.ShowDialog();
+            printPreviewDialog1.ShowDialog();
         }
 
         private void n_btn_save_Click(object sender, EventArgs e)
@@ -360,6 +359,27 @@ namespace Skoraya
         private void n_btn_logout_Click(object sender, EventArgs e)
         {
             Application.Restart();
+        }
+
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            Call call = calls.Find(x => x.id.ToString() == h_dgv_calls.SelectedCells[0].OwningRow.Cells[0].Value.ToString());
+            Doc d = docs.Find(x => x.id.ToString() == call.idd.ToString());
+            MedPers mp = mPerss.Find(x => x.id.ToString() == call.idm.ToString());
+            Mash m = mashs.Find(x => x.id.ToString() == call.idmash.ToString());
+            Boln b = bolns.Find(x => x.id.ToString() == call.idb.ToString());
+            e.Graphics.DrawString("Номер вызова: " + call.id + "\n" +
+                "Причина: " + call.prichina + "\n" +
+                "Помощь: " + call.pomosh + "\n" +
+                "Адрес доставки: " + call.dostavka + "\n" +
+                "Дата: " + call.data + "\n" +
+                "----------------------------" + "\n" +
+                "Врач: " + d.name + ". " + d.spec + ", " + d.dolj + "\n" +
+                "Мед персонал: " + mp.name + "\n" +
+                "Машина: " + m.num + ", " + m.gosNum + ", " + m.godVip + ", " + m.driverName + ", " + m.vodUdost + "\n" +
+                "Больной: " + b.name + ". " + b.date + ", " + b.address + "\n"
+
+                , DefaultFont, Brushes.Black, 50, 50);
         }
     }
     public class Call
